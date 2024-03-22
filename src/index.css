@@ -1,13 +1,298 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #171717;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  /* background-color: antiquewhite; */
+}
+
+
+/* NavBar Code  */
+
+.nav{
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 12vh;
+  /* background-color: #fff; */
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: 2px solid rgb(39, 38, 38); */
+  box-shadow:  0 6px 15px 0 hsla(0, 0%, 0%, 0.05);
+  backdrop-filter: blur(50px);
+}
+
+.nav .nav-logo{
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 15%;
+  align-items: center;
+  margin-left: 3%;
+  gap:5%;
+  /* background-color: aqua; */
+}
+.nav .nav-logo h3{
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 1.5vw;
+  word-spacing: 2%;
+}
+.nav .nav-logo span{
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: #00b392;
+}
+
+.nav .nav-menu{
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+.nav .nav-menu h4 a{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  font-style: normal;
+  font-size: 1vw;
+  transition: all .2s;
+}
+.nav .nav-menu h4 a:hover{
+  color:#009087;
+}
+
+.nav .nav-search{
+  position: relative;
+  height: 100%;
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.nav .nav-search i{
+  position: relative;
+  font-size: 1.5vw;
+  margin-left: 5%;
+}
+.nav .nav-search h4{
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1vw;
+  padding: 2%;
+}
+
+
+
+
+
+
+.hero{
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  /* background-color: aliceblue; */
+}
+
+.hero img{
+  margin-top: 10px;
+  position: absolute;
+  width: 100%;
+  background-size: contain;
+}
+
+.hero .left{
+  position: relative;
+  height: 80%;
+  /* background-color: antiquewhite; */
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3%;
+  align-items: center;
+}
+
+.hero .left h1{
+  font-family: "Poppins", sans-serif;
+  width: 60%;
+  font-weight: 700;
+  margin-bottom: 2vh;
+  font-size: 3.2vw;
+  font-style: normal;
+}
+.hero .left h1 span{
+  /* color: #00b392; */
+  color: #ee4962;
+}
+.hero .left h3{
+  font-family: "Poppins", sans-serif;
+  width: 60%;
+  font-weight: 500;
+  font-size: 1vw;
+  margin-bottom: 2vh;
+  font-style: normal;
+}
+.button2 {
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  cursor: pointer;
+  font-size: 1.2vw;
+  border-radius: 0.5em;
+  background: #00b392;
+  border: 1px solid #e8e8e8;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.button2:active {
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.button2:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.button2:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #009087;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.button2:hover {
+  color: #ffffff;
+  border: 1px solid #009087;
+}
+
+.button2:hover:before {
+  top: -35%;
+  background-color: #009087;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.button2:hover:after {
+  top: -45%;
+  background-color: #009087;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+
+
+
+
+/* =============================================== */
+
+.hero .right{
+  position: relative;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  /* background-color: #fff; */
+}
+
+.hero .right .herobgimg{
+  position: absolute;
+  width: 90%;
+  /* height: 90%; */
+  left:0;
+}
+
+.hero .right .heroimg{
+  position: relative;
+  width: 80%;
+  border-radius: 0% 25% 0% 25%;
+  /* border:2px solid #009087 ; */
+  padding: 2px;
+  transition: all 0.2s;
+}
+.hero .right .heroimg:hover{
+  border-radius: 25% 0% 25% 0%;
+}
+
+/* =========================================================Hero Section End=============================================== */
+/* =========================================================Hero2 Section Start=============================================== */
+
+.hero2{
+  position: relative;
+  margin-top: 5%;
+  width: 100%;
+  height: 100%;
+  /* background-color: saddlebrown; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero2 h1{
+  text-align: center;
+  text-transform:uppercase;
+  font-weight: 700;
+  letter-spacing: 5px;
+  font-size: 2.5vw;
+  font-style: normal;
+}
+.hero2 h1 span{
+  color: #ee4962;
+}
+.hero2 h2{
+  text-align: center;
+  text-transform:uppercase;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hero2 .features{
+  position: relative;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: darkgray;
 }
