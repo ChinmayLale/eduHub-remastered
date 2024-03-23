@@ -64,9 +64,9 @@ body{
   align-items: center;
   gap: 5%;
 }
-.nav .nav-menu h4 a{
+.nav .nav-menu h4 .Link{
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   color: black;
   font-style: normal;
@@ -99,10 +99,19 @@ body{
   padding: 2%;
 }
 
+/* =============================================================================================================== */
 
 
 
-
+.home{
+  position: relative;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .hero{
   position: relative;
@@ -148,20 +157,23 @@ body{
   font-family: "Poppins", sans-serif;
   width: 60%;
   font-weight: 500;
+  text-align: left;
   font-size: 1vw;
   margin-bottom: 2vh;
   font-style: normal;
 }
 .button2 {
   display: inline-block;
+  width: 20%;
+  height: 10%;
   transition: all 0.2s ease-in;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  color: #090909;
-  padding: 0.7em 1.7em;
+  color: #343434;
+  /* padding: 0.7em 1.7em; */
   cursor: pointer;
-  font-size: 1.2vw;
+  font-size: 1vw;
   border-radius: 0.5em;
   background: #00b392;
   border: 1px solid #e8e8e8;
@@ -252,9 +264,9 @@ body{
   padding: 2px;
   transition: all 0.2s;
 }
-.hero .right .heroimg:hover{
+/* .hero .right .heroimg:hover{
   border-radius: 25% 0% 25% 0%;
-}
+} */
 
 /* =========================================================Hero Section End=============================================== */
 /* =========================================================Hero2 Section Start=============================================== */
@@ -286,13 +298,191 @@ body{
   text-transform:uppercase;
   font-weight: 600;
   font-style: normal;
+  color: gray;
 }
 
 .hero2 .features{
   position: relative;
+  margin-top: 2vh;
   width: 90%;
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: darkgray;
+  flex-wrap: wrap;
+  /* background-color: darkgray; */
+  justify-content: space-evenly;
+  gap:2vw;
+}
+
+.hero2 .features .feature-card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  justify-content: space-evenly;
+  background-color: #1ab79d1b;
+  border-radius: 2%;
+  gap: 2%;
+  width: 20%;
+  height: 48vh;
+}
+.hero2 .features .feature-card:nth-child(2){
+  background-color: #ee49621b;
+}
+.hero2 .features .feature-card:nth-child(3){
+  background-color: #4461e41a;
+}
+.hero2 .features .feature-card:nth-child(4){
+  background-color: #f8b72017;
+}
+.hero2 .features .feature-card:nth-child(5){
+  background-color: #4461e41a;
+}
+.hero2 .features .feature-card img{
+  position: relative;
+  padding: 2%;
+  width: 55%;
+  height: 45%;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: top;
+  background-color: #1ab79d14;
+  margin-top: 5%;
+}
+.hero2 .features .feature-card:nth-child(2) img{
+  background-color: #ee49621b;
+  color:#ee4962;
+}
+.hero2 .features .feature-card:nth-child(3) img{
+  background-color: #4461e41a;
+  color:#4461e4f3 ;
+}
+.hero2 .features .feature-card:nth-child(4) img{
+  background-color: #f8b72017;
+  color:#f8b720e8 ;
+}
+.hero2 .features .feature-card:nth-child(5) img{
+  background-color: #4461e41a;
+  color:#4461e4fc ;
+}
+.hero2 .features .feature-card h3{
+  position: relative;
+  width: 80%;
+  text-decoration: bold;
+  text-align: center;
+  font-weight: 450;
+  font-size: 1.2vmax;
+  margin-top: 10px;
+}
+.hero2 .features .feature-card h4{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-weight: 200;
+  font-size: 1vmax;
+  margin-top: 10px;
+}
+.hero2 .features .feature-card h5{
+  position: relative;
+  width: 40%;
+  height: 6vh;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1vmax;
+  margin-top: 10px;
+  margin-bottom: 10%;
+  background-color: #1ab79d14;
+  color: #009087;
+}
+.hero2 .features .feature-card:nth-child(2) h5{
+  background-color: #ee49621b;
+  color:#ee4962;
+}
+.hero2 .features .feature-card:nth-child(3) h5{
+  background-color: #4461e41a;
+  color:#4461e4f3 ;
+}
+.hero2 .features .feature-card:nth-child(4) h5{
+  background-color: #f8b72017;
+  color:#f8b720e8 ;
+}
+.hero2 .features .feature-card:nth-child(5) h5{
+  background-color: #4461e41a;
+  color:#4461e4fc ;
+}
+
+  
+.hero2 .morecourse{
+  position: relative;
+  margin-top: 5vh;
+  width:10vmax;
+  height: 3vmax;
+  background-color:#ee4962;
+  border-radius: 5px;
+  color: ivory;
+  border: none;
+  font-size: 1vmax;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* =====================================================Hero3 Starts Here=============================================== */
+
+.hero3{
+  position: relative;
+  margin-top: 3%;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ivory;
+  justify-content: space-between;
+}
+.hero3 .left{
+  position: relative;
+  display: flex;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+}
+.hero3 .left .bgimg{
+  position: relative;
+  width: 80%;
+  height: 100%;
+}
+.hero3 .right{
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.hero3 .right h4{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-weight: 250;
+  font-size: 1vmax;
+  margin-top: 10px;
+}
+.hero3 .right h1{
+  width: 50%;
+  /* text-align: justify; */
+  text-transform:uppercase;
+  font-weight: 700;
+  letter-spacing: 5px;
+  font-size: 2.5vw;
+  font-style: normal;
+}
+.hero3 .right h1 span{
+  color: #ee4962;
 }
