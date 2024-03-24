@@ -5,7 +5,9 @@
   font-family: "Poppins", sans-serif;
   color: #171717;
 }
-
+html{
+  scroll-behavior:smooth;
+}
 body{
   width: 100%;
   font-family: "Poppins", sans-serif;
@@ -309,7 +311,6 @@ body{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* background-color: darkgray; */
   justify-content: space-evenly;
   gap:2vw;
 }
@@ -571,7 +572,7 @@ font-style: normal;
 .hero4{
   position: relative;
   width: 100%;
-  height: 50vh;
+  height: max-content;
   margin-top: 4%;
   display: flex;
   flex-direction: column;
@@ -597,4 +598,84 @@ font-style: normal;
   font-size: 1vw;
   font-style: normal;
   text-align: center;
-  }
+}
+
+.hero4 .course-card-div{
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #f5f1eb;
+  padding: 1%;
+}
+
+.hero4 .course-card-div .course-card{
+  position: relative;
+  width: 28%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: snow;
+  justify-content: space-between;
+  top: 0%;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.hero4 .course-card-div .course-card img{
+  position: relative;
+  width: 100%;
+  height: max-content;
+  margin-top: 0;
+  border: none;
+  border-radius: 20px;
+  transition: all  0.4s;
+}
+.hero4 .course-card-div .course-card img:hover{
+  transform: scale(1.1);
+}
+
+.hero4 .course-card-div .course-card .course-info{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 50%;
+  justify-content: space-evenly;
+}
+.hero4 .course-card-div .course-card .course-info .stars{
+  position: relative;
+  font-size: 1.5vmax;
+
+}
+.hero4 .course-card-div .course-card .course-info .stars i{
+  color: goldenrod;
+  fill: goldenrod;
+}
+.hero4 .course-card-div .course-card h3{
+  position: relative;
+  width: max-content;
+  text-align: left;
+  background:#00908655;
+  color: #009087;
+  border-radius: 2px;
+  margin-left: 1%;
+}
+.hero4 .course-card-div .course-card h1{
+  position: relative;
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: 1.2vmax;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 1%;
+}
+.hero4 .course-card-div .course-card h1 span{
+  color: #ee4962;
+  margin-left: 1%;
+}
