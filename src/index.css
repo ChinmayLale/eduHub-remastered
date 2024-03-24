@@ -578,7 +578,7 @@ font-style: normal;
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
-  /* background-color: antiquewhite; */
+  background-color: #f5f1eb;
 }
 
 .hero4 h1{
@@ -614,7 +614,7 @@ font-style: normal;
 
 .hero4 .course-card-div .course-card{
   position: relative;
-  width: 28%;
+  width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -646,6 +646,7 @@ font-style: normal;
   flex-direction: column;
   width: 80%;
   height: 50%;
+  margin-left: 5%;
   justify-content: space-evenly;
 }
 .hero4 .course-card-div .course-card .course-info .stars{
@@ -661,7 +662,7 @@ font-style: normal;
   position: relative;
   width: max-content;
   text-align: left;
-  background:#00908655;
+  background:#00908620;
   color: #009087;
   border-radius: 2px;
   margin-left: 1%;
@@ -678,4 +679,32 @@ font-style: normal;
 .hero4 .course-card-div .course-card h1 span{
   color: #ee4962;
   margin-left: 1%;
+}
+
+.hero4 button{
+  position: relative;
+  margin-top: 5vh;
+  width:15%;
+  height: 3vmax;
+  /* background-color:#ee4962; */
+  border-radius: 5px;
+  color: ivory;
+  fill: ivory;
+  border: none;
+  font-size: 1vmax;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(120deg, #FF204E, #5D0E41);
+  transition: all ease 2s;
+}
+
+.hero4 button i{
+  color: ivory;
+  fill: ivory;
+  font-size: 1vmax;
+  margin-left: 1%;
+}
+
+.hero4 button:hover{
+  background: linear-gradient(120deg, #5D0E41, #FF204E);
 }

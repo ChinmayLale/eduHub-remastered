@@ -131,7 +131,7 @@ function Hero() {
           <div className="course-card">
             <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
             <div className='course-info'>
-              <h3>beginner</h3>
+              <h3>Beginner</h3>
               <div className='stars'>
               <i class="ri-star-fill"></i>
               <i class="ri-star-fill"></i>
@@ -148,7 +148,7 @@ function Hero() {
           <div className="course-card">
             <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
             <div className='course-info'>
-              <h3>beginner</h3>
+              <h3>Beginner</h3>
               <div className='stars'>
               <i class="ri-star-fill"></i>
               <i class="ri-star-fill"></i>
@@ -165,7 +165,7 @@ function Hero() {
           <div className="course-card">
             <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
             <div className='course-info'>
-              <h3>beginner</h3>
+              <h3>Beginner</h3>
               <div className='stars'>
               <i class="ri-star-fill"></i>
               <i class="ri-star-fill"></i>
@@ -179,6 +179,7 @@ function Hero() {
             </div>
           </div>
         </div>
+        <button>Browse more courses<i class="ri-arrow-right-line"></i></button>
       </div>
     </div>
   )
