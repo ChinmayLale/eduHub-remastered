@@ -133,12 +133,12 @@ function Hero() {
             <div className='course-info'>
               <h3>Beginner</h3>
               <div className='stars'>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-half-line"></i>
-              <i class="ri-star-line"></i>
-              <h3>(3.5 / 100) ratings</h3>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-line"></i>
+                <i class="ri-star-line"></i>
+                <h3>(3.5 / 100) ratings</h3>
               </div>
               <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
               <h1><span>Rs 1,000</span></h1>
@@ -150,12 +150,12 @@ function Hero() {
             <div className='course-info'>
               <h3>Beginner</h3>
               <div className='stars'>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-half-line"></i>
-              <i class="ri-star-line"></i>
-              <h3>(3.5 / 100) ratings</h3>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-line"></i>
+                <i class="ri-star-line"></i>
+                <h3>(3.5 / 100) ratings</h3>
               </div>
               <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
               <h1><span>Rs 1,000</span></h1>
@@ -167,12 +167,12 @@ function Hero() {
             <div className='course-info'>
               <h3>Beginner</h3>
               <div className='stars'>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-fill"></i>
-              <i class="ri-star-half-line"></i>
-              <i class="ri-star-line"></i>
-              <h3>(3.5 / 100) ratings</h3>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-line"></i>
+                <i class="ri-star-line"></i>
+                <h3>(3.5 / 100) ratings</h3>
               </div>
               <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
               <h1><span>Rs 1,000</span></h1>
@@ -180,6 +180,25 @@ function Hero() {
           </div>
         </div>
         <button>Browse more courses<i class="ri-arrow-right-line"></i></button>
+      </div>
+
+      <div className="hero5">
+        <div className="records">
+            <h1>10.2K+</h1>
+            <h2>Students Enrolled</h2>
+        </div>
+        <div className="records">
+            <h1>98%</h1>
+            <h2>Satisfaction Rate</h2>
+        </div>
+        <div className="records">
+            <h1>18.3k </h1>
+            <h2>Hours of Content</h2>
+        </div>
+        <div className="records">
+            <h1>130+</h1>
+            <h2>Top Teachers</h2>
+        </div>
       </div>
     </div>
   )

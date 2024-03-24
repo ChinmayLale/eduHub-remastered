@@ -11,7 +11,7 @@ html{
 body{
   width: 100%;
   font-family: "Poppins", sans-serif;
-  /* background-color: antiquewhite; */
+  /* background-color: ivory; */
 }
 
 
@@ -707,4 +707,65 @@ font-style: normal;
 
 .hero4 button:hover{
   background: linear-gradient(120deg, #5D0E41, #FF204E);
+}
+
+
+/* ========================================================================================================== */
+
+.hero5{
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  padding-left: 6%;
+  padding-right: 6%;
+  align-items: center;
+  background-color: snow;
+  justify-content: space-around;
+}
+
+.hero5 .records{
+  position: relative;
+  width: 20%;
+  height: max-content;
+  /* height: 40%; */
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+}
+.hero5 .records h1{
+  text-transform:capitalize;
+  font-weight: 700;
+  font-size: 2.5vw;
+  text-align: center;
+  font-style: normal;
+  color: inherit;
+}
+.hero5 .records h2{
+  text-decoration: none;
+  text-align: center;
+  font-weight: 450;
+  font-size: 1.2vmax;
+  color: #171717;
+}
+
+.hero5 .records:nth-child(1){
+  background-color: rgba(220, 20, 60, 0.2);
+  color: rgba(220, 20, 60);
+}
+.hero5 .records:nth-child(2){
+  background-color: rgba(248, 183, 32, 0.2);
+  color: rgba(248, 183, 32);
+}
+.hero5 .records:nth-child(3){
+  background-color: rgba(68, 97, 228, 0.2);
+  color:rgba(68, 97, 228) ;
+}
+.hero5 .records:nth-child(4){
+  background-color: rgb(0, 144, 135 , 0.2);
+  color: rgb(0, 144, 135 );
 }
