@@ -126,7 +126,7 @@ body{
   margin-top: 10px;
   position: absolute;
   width: 100%;
-  background-size: contain;
+  background-size: cover;
 }
 
 .hero .left{
@@ -343,6 +343,22 @@ body{
 .hero2 .features .feature-card:nth-child(5){
   background-color: #4461e41a;
 }
+.hero2 .features .feature-card:nth-child(n+6) {
+  background-color: #1ab79d1b; /* Repeat the second color */
+}
+
+.hero2 .features .feature-card:nth-child(6n+7) {
+  background-color: #ee49621b;/* Repeat the third color */
+}
+
+.hero2 .features .feature-card:nth-child(6n+8) {
+  background-color: #4461e41a;  /* Repeat the fourth color */
+}
+
+.hero2 .features .feature-card:nth-child(6n+9) {
+  background-color: #f8b72017; /* Repeat the fifth color */
+}
+
 .hero2 .features .feature-card img{
   position: relative;
   padding: 2%;
@@ -390,7 +406,7 @@ body{
 .hero2 .features .feature-card h5{
   position: relative;
   width: 40%;
-  height: 6vh;
+  height: max-content;
   text-align: center;
   font-weight: 600;
   font-size: 1vmax;
@@ -415,6 +431,23 @@ body{
 .hero2 .features .feature-card:nth-child(5) h5{
   background-color: #4461e41a;
   color:#4461e4fc ;
+}
+.hero2 .features .feature-card:nth-child(n+6) h5{
+  color: #009087; /* Repeat the second color */
+}
+
+.hero2 .features .feature-card:nth-child(6n+7) h5{
+  color:#ee4962;/* Repeat the third color */
+}
+
+.hero2 .features .feature-card:nth-child(6n+8) h5{
+  background-color: #4461e41a;
+  color:#4461e4f3 ;  /* Repeat the fourth color */
+}
+
+.hero2 .features .feature-card:nth-child(6n+9) h5{
+  background-color: #f8b72017;
+  color: #f8b720e8 ; /* Repeat the fifth color */
 }
 
   
@@ -522,6 +555,7 @@ body{
 
 .hero3 .right .tagline h3{
 width: 100%;
+/* height: max-content; */
 font-weight: 350;
 margin-top: 2%;
 letter-spacing: 2px;

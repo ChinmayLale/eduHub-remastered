@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import bgimg from './assets/hero-bg.svg';
 import herobgimg from './assets/hero-shape-2.png';
 import heropic from './assets/heroimg2.png';
@@ -6,6 +6,29 @@ import book from './assets/ml.svg';
 import DataS from './assets/Data_s.svg';
 import herobg3 from './assets/hero3-bg.png';
 function Hero() {
+  const [courses , setCourses] = useState(null);
+  const [showCourse , setShowCourse] = useState(3);
+  useEffect(()=>{
+      fetch("http://localhost:8000/get").then(
+        (res)=>res.json()
+      ).then((data)=>{
+        console.log(data.users);
+        console.log(typeof(data.users));
+        setCourses(data.users)
+        console.log("SetCourses = "+courses);
+      })
+  },[])
+  
+  const moreCourse = () => {
+    setShowCourse(showCourse+3);
+  }
+
+
+
+
+
+
+
   return (
     <div className='home'>
       <div className="hero">
@@ -19,7 +42,7 @@ function Hero() {
           </h3>
           <button className='button2'>
             Explore Courses
-            <i class="ri-arrow-right-up-line"></i>
+            <i className="ri-arrow-right-up-line"></i>
           </button>
         </div>
         <div className="right">
@@ -31,7 +54,19 @@ function Hero() {
         <h2>categories</h2>
         <h1>Discover <span>10+ Categories</span> of Online Classes</h1>
         <h2>Unlock limitless knowledge !</h2>
-        <div className="features">
+        <div className="features" >
+          {courses && courses.slice(0,showCourse).map((course) =>(
+            // console.log("CourseName : "+course.course);
+            <div className="feature-card"  key={course.id}>
+            <img src={book} alt="" />
+            <h3 style={{textTransform:'capitalize'}}>{course.course}</h3>
+            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
+            <h5>2+ Courses</h5>
+          </div>
+            
+            
+          )
+          )}
           <div className="feature-card">
             <img src={book} alt="" />
             <h3>Machine Learning</h3>
@@ -46,36 +81,12 @@ function Hero() {
           </div>
           <div className="feature-card">
             <img src={book} alt="" />
-            <h3>Web Development</h3>
-            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
-            <h5>8+ Courses</h5>
-          </div>
-          <div className="feature-card">
-            <img src={book} alt="" />
-            <h3>Android Development</h3>
-            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
-            <h5>5+ Courses</h5>
-          </div>
-          <div className="feature-card">
-            <img src={book} alt="" />
-            <h3>Data Structures</h3>
-            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
-            <h5>10+ Courses</h5>
-          </div>
-          <div className="feature-card">
-            <img src={book} alt="" />
-            <h3>Full Stack Developer</h3>
-            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
-            <h5>12+ Courses</h5>
-          </div>
-          <div className="feature-card">
-            <img src={book} alt="" />
             <h3>Version Control System</h3>
             <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
             <h5>10+ Courses</h5>
           </div>
         </div>
-        <button className='morecourse'>Discover More</button>
+        <button className='morecourse'onClick={moreCourse}>Discover More</button>
       </div>
       <div className="hero3">
         <div className="left">
@@ -86,31 +97,31 @@ function Hero() {
           <h1>Over 10 Years in <span>Distant learning</span> for Skill Development</h1>
           <h3>See what sets us apart !</h3>
           <div className="tagline">
-            <i class="ri-check-double-line"></i>
+            <i className="ri-check-double-line"></i>
             <h3>"Attentivize" - Real-time student engagement monitoring.</h3>
           </div>
           <div className="tagline">
-            <i class="ri-check-double-line"></i>
+            <i className="ri-check-double-line"></i>
             <h3>"SecureExamGuard"- Prevents cheating & maintaining a fair assessment process.</h3>
           </div>
           <div className="tagline">
-            <i class="ri-check-double-line"></i>
+            <i className="ri-check-double-line"></i>
             <h3>"FlexLearn" - Explore diverse course offerings at your own pace.</h3>
           </div>
           <div className="tagline">
-            <i class="ri-check-double-line"></i>
+            <i className="ri-check-double-line"></i>
             <h3>"DirectConnect" - One-on-one live sessions with expert instructors.</h3>
           </div>
           <div className="tagline">
-            <i class="ri-check-double-line"></i>
+            <i className="ri-check-double-line"></i>
             <h3>"EmergencyAccess"- Get access to recorded lectures in emergencies with instructor permission for uninterrupted learning.</h3>
           </div>
         </div>
       </div>
-      <dev className="hero4">
+      <div className="hero4">
         <h3>POPULAR COURSES</h3>
         <h1>Pick A Course To Get Started</h1>
-      </dev>
+      </div>
     </div>
   )
 }
