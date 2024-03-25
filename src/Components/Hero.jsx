@@ -5,7 +5,7 @@ import heropic from './assets/heroimg2.png';
 import book from './assets/ml.svg';
 import DataS from './assets/Data_s.svg';
 import herobg3 from './assets/hero3-bg.png';
-
+import Cursor from './Cursor';
 
 
 
@@ -28,9 +28,6 @@ function Hero() {
   const moreCourse = () => {
     setShowCourse(showCourse + 3);
   }
-
-  const star = 5;
-
 
 
 
@@ -200,6 +197,7 @@ function Hero() {
             <h2>Top Teachers</h2>
         </div>
       </div>
+
     </div>
   )
 }
