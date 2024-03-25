@@ -1,6 +1,12 @@
-import React from 'react'
+import React,{useState , useEffect} from 'react'
 import '../index.css';
 function Cursor() {
+    const [isDomRendered, setIsDomRendered] = useState(false);
+    useEffect(() => {
+        setIsDomRendered(true);
+    },[]);
+
+    if(isDomRendered){
     const coords = { x: 0, y: 0 };
     const circles = document.querySelectorAll(".circle");
 
@@ -43,31 +49,31 @@ function Cursor() {
 
     animateCircles();
 
-
+}
 
 
     return (
-        <div class="cursor">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+        <div className="cursor">
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
+            <div className="circle"></div>
         </div>
     )
 }

@@ -30,14 +30,17 @@ import Cursor from "./Components/Cursor";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
-
+  const [isDomRendered, setIsDomRendered] = useState(false);
+  useEffect(() => {
+      setIsDomRendered(true);
+  },[]);
   return (
     <>
       <NavBar />
-      <Cursor />
       <Routes>
         <Route path="/" element={<Hero />} />
       </Routes>
+      {isDomRendered? <Cursor />:null}
     </>
   );
 }

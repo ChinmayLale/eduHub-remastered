@@ -5,7 +5,6 @@ import heropic from './assets/heroimg2.png';
 import book from './assets/ml.svg';
 import DataS from './assets/Data_s.svg';
 import herobg3 from './assets/hero3-bg.png';
-import Cursor from './Cursor';
 
 
 
@@ -130,11 +129,11 @@ function Hero() {
             <div className='course-info'>
               <h3>Beginner</h3>
               <div className='stars'>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-line"></i>
-                <i class="ri-star-line"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-half-line"></i>
+                <i className="ri-star-line"></i>
                 <h3>(3.5 / 100) ratings</h3>
               </div>
               <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
@@ -147,11 +146,11 @@ function Hero() {
             <div className='course-info'>
               <h3>Beginner</h3>
               <div className='stars'>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-line"></i>
-                <i class="ri-star-line"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-half-line"></i>
+                <i className="ri-star-line"></i>
                 <h3>(3.5 / 100) ratings</h3>
               </div>
               <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
@@ -164,11 +163,11 @@ function Hero() {
             <div className='course-info'>
               <h3>Beginner</h3>
               <div className='stars'>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-fill"></i>
-                <i class="ri-star-half-line"></i>
-                <i class="ri-star-line"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-fill"></i>
+                <i className="ri-star-half-line"></i>
+                <i className="ri-star-line"></i>
                 <h3>(3.5 / 100) ratings</h3>
               </div>
               <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
@@ -176,7 +175,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <button>Browse more courses<i class="ri-arrow-right-line"></i></button>
+        <button>Browse more courses<i className="ri-arrow-right-line"></i></button>
       </div>
 
       <div className="hero5">
