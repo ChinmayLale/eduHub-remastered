@@ -1,7 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import '../navbtn.css';
+import LogoutBtn from './LogoutBtn';
+import { useAuth0 } from "@auth0/auth0-react";
+
+
+
+
 function NavBar() {
+    const { loginWithRedirect , logout , isAuthenticated , user} = useAuth0();
+
+
+
+
+
+
     return (
         <div className="nav">
             <div className="nav-logo">
@@ -12,8 +25,9 @@ function NavBar() {
             </div>
             <div className="nav-menu">
                 <h4><Link to="/"  className='Link'>Home</Link></h4>
-                <h4><Link to="/home" className='Link'>About</Link></h4>
+                <h4><Link to="/about" className='Link'>About</Link></h4>
                 <h4><Link to="/home" className='Link'>Courses</Link></h4>
+                <h4><Link to="/Lobby" className='Link'>Doubts</Link></h4>
                 <h4><Link to="/home" className='Link'>Contact Us</Link></h4>
             </div>
 
@@ -21,7 +35,9 @@ function NavBar() {
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
                 <i className="ri-shopping-cart-2-line"></i>
-                <button className="button">
+                {isAuthenticated && <div className="userinfo"><img src={user.picture} alt={user.name} /><p>{user.name}</p></div>}
+                {isAuthenticated ? (<LogoutBtn onClick={()=>logout({ logoutParams: { returnTo: window.location.origin } })}/>) 
+                :(<button className="button" onClick={() => loginWithRedirect()}>
                     Try Now
                     <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
                         <path
@@ -30,7 +46,7 @@ function NavBar() {
                             fillRule="evenodd"
                         ></path>
                     </svg>
-                </button>
+            </button>)}
             </div>
         </div>
     )

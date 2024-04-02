@@ -22,6 +22,7 @@ function Hero() {
       setCourses(data.users)
       console.log("SetCourses = " + courses);
     })
+    // eslint-disable-next-line
   }, [])
 
   const moreCourse = () => {
@@ -197,6 +198,49 @@ function Hero() {
         </div>
       </div>
 
+
+
+      <div className="hero6">
+        <h3>Letest Reviews</h3>
+        <h1>Get In News With EduHub</h1>
+        <div className="artical-div">
+          <div className="artical">
+            <img src='https://picsum.photos/1920/1080' alt="" />
+            <div className="a-desc">
+              <h4>Online</h4>
+              <h3>Become A Better Blogger: Content Planning</h3>
+              <div>
+              <i className="ri-calendar-check-fill"></i><h4>Oct 10, 2021</h4>
+              <i className="ri-chat-smile-2-line"></i><h4>com 6</h4>
+              </div>
+            </div>
+          </div>
+
+          <div className="artical">
+            <img src='https://picsum.photos/id/66/4096/2160' alt="" />
+            <div className="a-desc">
+              <h4>Online</h4>
+              <h3>Become A Better Blogger: Content Planning</h3>
+              <div>
+              <i className="ri-calendar-check-fill"></i><h4>Oct 10, 2021</h4>
+              <i className="ri-chat-smile-2-line"></i><h4>com 6</h4>
+              </div>
+            </div>
+          </div>
+
+          <div className="artical">
+            <img src='https://picsum.photos/3840/2160' alt="" />
+            <div className="a-desc">
+              <h4>Online</h4>
+              <h3>Become A Better Blogger: Content Planning</h3>
+              <div>
+              <i className="ri-calendar-check-fill"></i><h4>Oct 10, 2021</h4>
+              <i className="ri-chat-smile-2-line"></i><h4>com 6</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

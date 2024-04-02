@@ -1,6 +1,31 @@
 import React,{useState , useEffect} from 'react'
 import '../index.css';
 function Cursor() {
+
+    const cur =  {
+        "pointerEvents": 'none',
+        'position': 'fixed',
+        'display': 'block',
+        'borderRadius': '0',
+        'mixBlendMode': 'difference',
+        'top:': '0',
+        'left': '0',
+        'zIndex': '99999999999999'
+      }
+      
+     const cir = {
+        "position": "absolute",
+        "display": "block",
+        "width": "1.2vmax",
+        "height": "1.2vmax",
+        "borderRadius": "20px",
+        "backgroundColor": "#fff"
+      }
+
+
+
+
+
     const [isDomRendered, setIsDomRendered] = useState(false);
     useEffect(() => {
         setIsDomRendered(true);
@@ -16,6 +41,7 @@ function Cursor() {
         circle.x = 0;
         circle.y = 0;
         circle.style.backgroundColor = "white";
+        // circle.style.zIndex = 999999999;
     });
 
     window.addEventListener("mousemove", function (e) {
@@ -53,27 +79,27 @@ function Cursor() {
 
 
     return (
-        <div className="cursor">
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
+        <div className="cursor" style={cur}>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
+            <div className="circle" style={cir}></div>
         </div>
     )
 }
