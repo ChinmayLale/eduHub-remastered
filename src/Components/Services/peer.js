@@ -36,6 +36,14 @@ class PeerService {
         return offer;
       }
     }
+
+    close() {
+      if (this.peer) {
+        this.peer.close();
+        this.peer = null; // Optionally, reset the peer object
+      }
+    }
+    
   }
   
   // eslint-disable-next-line
