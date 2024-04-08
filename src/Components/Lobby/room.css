@@ -7,10 +7,11 @@
 .room_main{
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 88vh;
     /* background-color: antiquewhite; */
     display: flex;
     flex-direction: column;
+    /* z-index: -11; */
     align-items: center;
 }
 
@@ -40,12 +41,15 @@
 }
 
 #callup {
+    position: absolute;
+    bottom: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
+    width: 6vw;
+    height: 6vw;
     border-radius: 100%;
+    /* z-index: 0; */
     border: none;
     background-color: #30C04F;
   }
@@ -53,3 +57,31 @@
   #callup:hover {
     background-color: #2bac47;
   }
+
+.room_main h2{
+    position: absolute;
+    bottom: 30%;
+    text-align: center;
+    font-size: 1.5vw;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-style: normal;
+    font-family: inherit;
+}
+
+.room_main .remoteStream {
+    position: absolute;
+    /* border-radius: 50%; */
+    top: 10%;
+    width: 100vw;
+    z-index: -10;
+}
+
+.room_main .myStream{
+    position: absolute;
+    width: 50vw;
+    height: 90%;
+    /* border-radius: 50%; */
+    right: 0%;
+    z-index: -10;
+}
