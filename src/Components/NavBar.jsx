@@ -26,7 +26,7 @@ function NavBar() {
             <div className="nav-menu">
                 <h4><Link to="/"  className='Link'>Home</Link></h4>
                 <h4><Link to="/about" className='Link'>About</Link></h4>
-                <h4><Link to="/home" className='Link'>Courses</Link></h4>
+                <h4><Link to="/Courses" className='Link'>Courses</Link></h4>
                 <h4><Link to="/Lobby" className='Link'>Doubts</Link></h4>
                 <h4><Link to="/home" className='Link'>Contact Us</Link></h4>
             </div>
