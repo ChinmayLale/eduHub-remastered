@@ -9,7 +9,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar() {
     const { loginWithRedirect , logout , isAuthenticated , user} = useAuth0();
-
+    const userpic = async () =>{
+        const p =  await user.picture;
+        document.getElementById('profilepic').src = p;
+    }
 
 
 
@@ -35,7 +38,7 @@ function NavBar() {
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
                 <i className="ri-shopping-cart-2-line"></i>
-                {isAuthenticated && <div className="userinfo"><img src={user.picture} alt={user.name} /><p>{user.name}</p></div>}
+                {isAuthenticated && <div className="userinfo"><img src={userpic} alt={user.profile} id='profilepic'/><p>{user.name}</p></div>}
                 {isAuthenticated ? (<LogoutBtn onClick={()=>logout({ logoutParams: { returnTo: window.location.origin } })}/>) 
                 :(<button className="button" onClick={() => loginWithRedirect()}>
                     Try Now

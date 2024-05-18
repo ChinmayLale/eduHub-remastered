@@ -6,7 +6,6 @@ import Doubts from '../assets/doubts1.svg';
 
 
 
-
 function Lobby() {
 
     const [email, setEmail] = useState('');
@@ -42,12 +41,15 @@ function Lobby() {
 
 
     const GetSubject = (val) =>{
-        alert(val+1)
+        alert(`Confirm ${subjects[val]} ?`)
         const setSubject = document.getElementById('room');
         setSubject.value = val;
         setRoom(subjects[val]);
     }
 
+    const goTOMAPS = () =>{
+        navigate('/maps');
+    }
 
     return (
         <div className='lobby'>
@@ -60,7 +62,7 @@ function Lobby() {
                         <input type="text" id='email' value={email} onChange={(e) => { setEmail(e.target.value) }} />
                         <h3>Subject</h3>
                         <input type="text" id='room' value={room} disabled onChange={(e) => { setRoom(e.target.value) }} /> <br />
-                        <button onClick={() => { handleSubmit() }}>Request Call<i class="ri-phone-line"></i></button>
+                        <button onClick={() => { handleSubmit() }}>Request Call<i className="ri-phone-line"></i></button>
                         <h3>Select Subject</h3>
                         <div className="subjects">
                         {subjects.map((val,index)=>{
@@ -69,10 +71,12 @@ function Lobby() {
                             )
                         })}
                         </div>
+                        
                     </div>
                   
                 </div>
                 <img src={Doubts} alt="" />
+                <button id="buddies" style={{position:'absolute', top:'10%' ,right:'10%' ,}} onClick={goTOMAPS}><i class="ri-user-location-line" style={{color: 'aliceblue' , fontWeight:'500'}}></i>Find Buddies</button>
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import heropic from './assets/heroimg2.png';
 import book from './assets/ml.svg';
 import DataS from './assets/Data_s.svg';
 import herobg3 from './assets/hero3-bg.png';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -13,6 +14,7 @@ import herobg3 from './assets/hero3-bg.png';
 function Hero() {
   const [courses, setCourses] = useState(null);
   const [showCourse, setShowCourse] = useState(3);
+  const navi = useNavigate()
   useEffect(() => {
     fetch("http://localhost:8000/get").then(
       (res) => res.json()
@@ -29,7 +31,9 @@ function Hero() {
     setShowCourse(showCourse + 3);
   }
 
-
+  const GotoCoursePage = (subject) =>{
+    navi(`/Courses/${subject}`);
+  }
 
 
   return (
@@ -60,7 +64,7 @@ function Hero() {
         <div className="features" >
           {courses && courses.slice(0, showCourse).map((course) => (
             // console.log("CourseName : "+course.course);
-            <div className="feature-card" key={course.id}>
+            <div className="feature-card" key={course.id} onClick={()=>GotoCoursePage(`${course.course}`)}>  
               <img src={book} alt="" />
               <h3 style={{ textTransform: 'capitalize' }}>{course.course}</h3>
               <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
@@ -70,19 +74,19 @@ function Hero() {
 
           )
           )}
-          <div className="feature-card">
+          <div className="feature-card" onClick={()=>GotoCoursePage('MachineLearning')}>
             <img src={book} alt="" />
             <h3>Machine Learning</h3>
             <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
             <h5>2+ Courses</h5>
           </div>
-          <div className="feature-card">
+          <div className="feature-card"  onClick={()=>GotoCoursePage('MachineLearning')}>
             <img src={DataS} alt="" />
             <h3>Data Science</h3>
             <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
             <h5>6+ Courses</h5>
           </div>
-          <div className="feature-card">
+          <div className="feature-card"  onClick={()=>GotoCoursePage('MachineLearning')}>
             <img src={book} alt="" />
             <h3>Version Control System</h3>
             <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
