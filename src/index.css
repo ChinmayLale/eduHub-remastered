@@ -1514,7 +1514,55 @@ button:active {
 }
 .mapsPage .maps{
   position: relative;
-  width: 50%;
+  width: 100%;
   height: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-evenly;
 }
 
+.mapsPage .maps .friends{
+  position: relative;
+  width: 50%;
+  height: 100%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5%;
+}
+
+.mapsPage .maps .friends h2{
+  width: 100%;
+  letter-spacing: normal;
+  font-size: 1.8vw;
+  font-weight: 600;
+  text-align: left;
+}
+
+.mapsPage .maps .friends .userList{
+  position: relative;
+  width: 80%;
+  height: 60vh;
+  background-color: #F3F3F3;
+  border :1px solid black;
+  border-radius: 20px;
+  overflow-y: scroll;
+  scrollbar-width: 1px;
+   /* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+   &::-webkit-scrollbar {
+    width: 0 !important; /* Hide horizontal scrollbar */
+    height: 0 !important; /* Hide vertical scrollbar */
+  }
+
+  /* Hide scrollbar for Mozilla Firefox */
+  scrollbar-width: none;
+}
+
+
+.mapsPage .groupStudies{
+  position: relative;
+  width: 100%;
+  height: 80vh;
+}
