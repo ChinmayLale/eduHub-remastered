@@ -15,15 +15,21 @@ function App() {
   useEffect(() => {
       setIsDomRendered(true);
   },[]);
+
+  const [isAuth , setIsAuth] = useState(false);
+  const isLoggedIn = () =>{
+    setIsAuth(!isAuth);
+  }
+
   return (
     <>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn}/>
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/about" element={<About/>} />
         <Route path="/Courses" element={<Courses/>} />
         <Route path="/Courses/:CoursePage" element={<CoursePage />} />
-        <Route path="/Lobby" element={<Lobby/>}/>
+        <Route path="/Lobby" element={isAuth ? <Lobby/>:null}/>
         <Route path="/room/:room" element={<Room/>}/>
         <Route path="/maps" element={<GetMaps/>}/>
 

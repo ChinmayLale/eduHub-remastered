@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import '../navbtn.css';
 import LogoutBtn from './LogoutBtn';
@@ -7,12 +7,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 
-function NavBar() {
+function NavBar(props) {
     const { loginWithRedirect , logout , isAuthenticated , user} = useAuth0();
-    const userpic = async () =>{
-        const p =  await user.picture;
-        document.getElementById('profilepic').src = p;
-    }
+    let userpic =null;
+
 
 
 
@@ -38,9 +36,9 @@ function NavBar() {
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
                 <i className="ri-shopping-cart-2-line"></i>
-                {isAuthenticated && <div className="userinfo"><img src={userpic} alt={user.profile} id='profilepic'/><p>{user.name}</p></div>}
-                {isAuthenticated ? (<LogoutBtn onClick={()=>logout({ logoutParams: { returnTo: window.location.origin } })}/>) 
-                :(<button className="button" onClick={() => loginWithRedirect()}>
+                {isAuthenticated && <div className="userinfo"><img src={user && user.picture} alt={user.name} id='profilepic'/><p>{user.name}</p></div>}
+                {isAuthenticated ? (<LogoutBtn onClick={()=>{logout({ logoutParams: { returnTo: window.location.origin } });}}/>) 
+                :(<button className="button" onClick={() => {loginWithRedirect();props.isLoggedIn()}}>
                     Try Now
                     <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
                         <path

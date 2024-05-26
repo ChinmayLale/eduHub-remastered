@@ -1,18 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'
 
 function Courses() {
-  let courseList = []
+
+  const navigate = useNavigate()
+  const [filterSearch, setfilterSearch] = useState('');
+  const [getCourses, setCourses] = useState(null);
+  const [getCourseImages, setgetCourseImages] = useState([]);
+  const [loading, setloading] = useState(false)
+  const apiKey = '44080195-c1425845d29c0dda8a633855e';
+  const imgArray = []
+
+
   useEffect(() => {
-    axios.get("http://localhost:8000/get").then(
-      (res) => {
-        console.log(res.data);
-        courseList.push(res.data);
-        console.log("Array : " + courseList);
-      }
-    )
+    async function getCourses() {
+      const rowData = await axios.get('http://localhost:8000/get/courses');
+      const data = await rowData.data;
+      setCourses(data);
+      console.log(data);
+      await data.map(async(obj,index)=>{
+        const response = await axios.get(`https://pixabay.com/api/?key=${apiKey}&q=${obj.subject}&image_type=photo&pretty=true`);
+        const rowData = await response.data.hits;
+        const imgUrl =await rowData.map((obj)=>{return obj.largeImageURL});
+        imgArray.push(imgUrl[0])
+        // setgetCourseImages(()=>[imgUrl[0]])
+        
+        if(data.length === imgArray.length){
+          setloading(true);
+          console.log(imgArray);
+          setgetCourseImages(imgArray)
+        }
+      })
+    }
+    getCourses();
+
   }, [])
+
+  function goToCourse(title,img,courseDesc,coursePrice,courseRating,subject) {
+    const courseData = {title,courseDesc,coursePrice,img,courseRating,subject}
+    localStorage.setItem('courseData', JSON.stringify(courseData));
+    navigate(`/Courses/${title}`)
+  }
+
+
 
 
   return (
@@ -20,12 +51,8 @@ function Courses() {
       <div className="first">
         <h1>Explore Our Wide Range Of Courses </h1>
         <div className="searchBox">
-
-          <input className="searchInput" type="text" name="" placeholder="Search something" />
+          <input className="searchInput" type="text" name="" placeholder="Search something" id='filterCourse' value={filterSearch} onChange={(e) => setfilterSearch(e.target.value)} />
           <button className="searchButton" href="#">
-
-
-
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
               <g clipPath="url(#clip0_2_17)">
                 <g filter="url(#filter0_d_2_17)">
@@ -48,112 +75,37 @@ function Courses() {
                 </clipPath>
               </defs>
             </svg>
-
-
           </button>
         </div>
-
-
-
         <div className="course-div">
-          <div className="course-card">
-            <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-            <div className='course-info'>
-              <h3>Beginner</h3>
-              <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
-              <div className='stars'>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-half-line"></i>
-                <i className="ri-star-line"></i>
-                <h3>(3.5 / 100) ratings</h3>
-              </div>
-              <h1><span>Rs 1,000</span></h1>
-              <button className='addtocart'>Add to cart</button>
-            </div>
-          </div>
 
-          <div className="course-card">
-            <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-            <div className='course-info'>
-              <h3>Beginner</h3>
-              <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
-              <div className='stars'>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-half-line"></i>
-                <i className="ri-star-line"></i>
-                <h3>(3.5 / 100) ratings</h3>
+          {getCourses && getCourseImages && loading ? getCourses.filter((obj) => 
+          obj.title.toLowerCase().includes(filterSearch.toLowerCase())).map((obj, index) => {
+            return (
+              <div className="course-card" key={obj._id}>
+                <img src={getCourseImages[index]}  alt={obj.subject} key={obj._id} />
+                <div className='course-info'>
+                  <h3>{obj.level}</h3>
+                  <h1>{obj.title}</h1>
+                  <p >{obj.desc}</p>
+                  <div className='stars'>
+                    {Array(Math.floor(obj.rating)).fill().map((_, index) => (
+                      <i key={index} className="ri-star-fill"></i>
+                    ))}
+                    {obj.rating % 1 !== 0 && <i className="ri-star-half-line"></i>}
+                    {Array(5 - Math.ceil(obj.rating)).fill().map((_, index) => (
+                      <i key={index + Math.floor(obj.rating)} className="ri-star-line"></i>
+                    ))}
+                    <h3>{obj.rating} ratings</h3>
+                  </div>
+                  <h1><span> Rs {obj.price}</span></h1>
+                  <button className='addtocart' onClick={() => { goToCourse(obj.title ,getCourseImages[index],obj.desc,obj.price,obj.rating,obj.subject) }}>Enroll Now</button>
+                </div>
               </div>
-              <h1><span>Rs 1,000</span></h1>
-              <button className='addtocart'>Add to cart</button>
-            </div>
-          </div>
+            )
+          }) : null}
 
-          <div className="course-card">
-            <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-            <div className='course-info'>
-              <h3>Beginner</h3>
-              <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
-              <div className='stars'>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-half-line"></i>
-                <i className="ri-star-line"></i>
-                <h3>(3.5 / 100) ratings</h3>
-              </div>
-              <h1><span>Rs 1,000</span></h1>
-              <button className='addtocart'>Add to cart</button>
-            </div>
-          </div>
 
-          <div className="course-card">
-            <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-            <div className='course-info'>
-              <h3>Beginner</h3>
-              <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
-              <div className='stars'>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-half-line"></i>
-                <i className="ri-star-line"></i>
-                <h3>(3.5 / 100) ratings</h3>
-              </div>
-              <h1><span>Rs 1,000</span></h1>
-              <button className='addtocart'>Add to cart</button>
-            </div>
-          </div>
-
-          <div className="course-card">
-            <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-            <div className='course-info'>
-              <h3>Beginner</h3>
-              <h1>Build Responsive Real- World Websites with HTML and CSS</h1>
-              <div className='stars'>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-fill"></i>
-                <i className="ri-star-half-line"></i>
-                <i className="ri-star-line"></i>
-                <h3>(3.5 / 100) ratings</h3>
-              </div>
-              <h1><span>Rs 1,000</span></h1>
-              <button className='addtocart'>Add to cart</button>
-            </div>
-          </div>
-          <div>
-            {courseList.map((course) => (
-              <h1>{course.name}</h1>
-            ))}
-            {courseList.map((course) => (
-              <h1>{course.name}</h1>
-            ))}
-          </div>
-          <h1>hello</h1>
         </div>
       </div>
     </div>
