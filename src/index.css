@@ -1577,6 +1577,42 @@ button:active {
   letter-spacing: 2px;
   margin: 10px;
 }
+.CoursePage .chapters{
+  position: relative;
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  
+}
+.CoursePage .chapters .accordion {
+  position: relative;;
+  background-color: red;
+  width: 50%;
+  margin-bottom: 0.5rem;
+  margin-left: 50px;
+  /* gap: 10px; */
+}
+/* .CoursePage .chapters .accordion:hover{
+  background-color: inherit;
+} */
+
+.CoursePage .chapters .accordion-header {
+  background-color: white;
+  font-size: 20px;
+  height: 30px;
+  font-weight: 600;
+  /* z-index: 10; */
+}
+/* .CoursePage .chapters .accordion-header:hover{
+  background-color: white;
+} */
+
+.CoursePage .chapters .accordion-body {
+  background-color: #f9fafb; /* Equivalent to bg-gray-50 */
+  padding: 1rem;
+}
+
 
 /* ====================================================================================================================================== */
 .mapsPage{

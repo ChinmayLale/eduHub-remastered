@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 function Courses() {
-
+  const { user, isAuthenticated  } = useAuth0()
   const navigate = useNavigate()
   const [filterSearch, setfilterSearch] = useState('');
   const [getCourses, setCourses] = useState(null);
@@ -19,14 +21,14 @@ function Courses() {
       const data = await rowData.data;
       setCourses(data);
       console.log(data);
-      await data.map(async(obj,index)=>{
+      await data.map(async (obj, index) => {
         const response = await axios.get(`https://pixabay.com/api/?key=${apiKey}&q=${obj.subject}&image_type=photo&pretty=true`);
         const rowData = await response.data.hits;
-        const imgUrl =await rowData.map((obj)=>{return obj.largeImageURL});
+        const imgUrl = await rowData.map((obj) => { return obj.largeImageURL });
         imgArray.push(imgUrl[0])
         // setgetCourseImages(()=>[imgUrl[0]])
-        
-        if(data.length === imgArray.length){
+
+        if (data.length === imgArray.length) {
           setloading(true);
           console.log(imgArray);
           setgetCourseImages(imgArray)
@@ -35,14 +37,40 @@ function Courses() {
     }
     getCourses();
 
-  }, [])
+  },[])
 
-  function goToCourse(title,img,courseDesc,coursePrice,courseRating,subject) {
-    const courseData = {title,courseDesc,coursePrice,img,courseRating,subject}
-    localStorage.setItem('courseData', JSON.stringify(courseData));
-    navigate(`/Courses/${title}`)
+  function goToCourse(title, img, courseDesc, coursePrice, courseRating, subject, instructor) {
+    if (isAuthenticated) {
+      const courseData = { title, courseDesc, coursePrice, img, courseRating, subject, instructor }
+      localStorage.setItem('courseData', JSON.stringify(courseData));
+      navigate(`/Courses/${title}`)
+    }
+    else {
+      alert('login / signup first')
+    }
   }
 
+
+  async function addtocart(obj) {
+    if (isAuthenticated) {
+      try {
+        const email = user.email;
+        const newObj = {
+          ...obj,
+          userEmail:email
+        }
+        // console.log(newObj)
+        const response = await axios.post('http://localhost:8000/addToCart',newObj);
+        const res = response.data;
+        console.log(res)
+      } catch (error) {
+        console.log("Error Getting Details")
+      }
+    }
+    else {
+      alert('Login / Signup first');
+    }
+  }
 
 
 
@@ -79,31 +107,32 @@ function Courses() {
         </div>
         <div className="course-div">
 
-          {getCourses && getCourseImages && loading ? getCourses.filter((obj) => 
-          obj.title.toLowerCase().includes(filterSearch.toLowerCase())).map((obj, index) => {
-            return (
-              <div className="course-card" key={obj._id}>
-                <img src={getCourseImages[index]}  alt={obj.subject} key={obj._id} />
-                <div className='course-info'>
-                  <h3>{obj.level}</h3>
-                  <h1>{obj.title}</h1>
-                  <p >{obj.desc}</p>
-                  <div className='stars'>
-                    {Array(Math.floor(obj.rating)).fill().map((_, index) => (
-                      <i key={index} className="ri-star-fill"></i>
-                    ))}
-                    {obj.rating % 1 !== 0 && <i className="ri-star-half-line"></i>}
-                    {Array(5 - Math.ceil(obj.rating)).fill().map((_, index) => (
-                      <i key={index + Math.floor(obj.rating)} className="ri-star-line"></i>
-                    ))}
-                    <h3>{obj.rating} ratings</h3>
+          {getCourses && getCourseImages && loading ? getCourses.filter((obj) =>
+            obj.title.toLowerCase().includes(filterSearch.toLowerCase())).map((obj, index) => {
+              return (
+                <div className="course-card" key={obj._id}>
+                  <img src={getCourseImages[index]} alt={obj.subject} key={obj._id} />
+                  <div className='course-info'>
+                    <h3>{obj.level}</h3>
+                    <h1>{obj.title}</h1>
+                    <p >{obj.desc}</p>
+                    <div className='stars'>
+                      {Array(Math.floor(obj.rating)).fill().map((_, index) => (
+                        <i key={index} className="ri-star-fill"></i>
+                      ))}
+                      {obj.rating % 1 !== 0 && <i className="ri-star-half-line"></i>}
+                      {Array(5 - Math.ceil(obj.rating)).fill().map((_, index) => (
+                        <i key={index + Math.floor(obj.rating)} className="ri-star-line"></i>
+                      ))}
+                      <h3>{obj.rating} ratings</h3>
+                    </div>
+                    <h1><span> Rs {obj.price}</span></h1>
+                    <button className='addtocart' onClick={() => { goToCourse(obj.title, getCourseImages[index], obj.desc, obj.price, obj.rating, obj.subject, obj.instructor) }}>Enroll Now</button>
+                    <i class="ri-shopping-cart-2-line absolute right-28 bottom-1 text-2xl bg-red-100 text-red-900 cursor-pointer p-2 rounded-lg" onClick={() => { addtocart(obj) }}></i>
                   </div>
-                  <h1><span> Rs {obj.price}</span></h1>
-                  <button className='addtocart' onClick={() => { goToCourse(obj.title ,getCourseImages[index],obj.desc,obj.price,obj.rating,obj.subject) }}>Enroll Now</button>
                 </div>
-              </div>
-            )
-          }) : null}
+              )
+            }) : null}
 
 
         </div>

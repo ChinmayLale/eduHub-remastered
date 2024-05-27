@@ -67,7 +67,7 @@ function Hero() {
             <div className="feature-card" key={course.id} onClick={()=>GotoCoursePage(`${course.course}`)}>  
               <img src={book} alt="" />
               <h3 style={{ textTransform: 'capitalize' }}>{course.course}</h3>
-              <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
+              <h4>Lorem ipsum , dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
               <h5>2+ Courses</h5>
             </div>
 

@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios';
 
 
 
 function MyAccount() {
+
+    const [myCourses, setMyCourses] = useState(null);
+    const { user } = useAuth0()
+    useEffect(() => {
+        async function getCartData() {
+            const response = await axios.post("http://localhost:8000/cartData", { email: user.email });
+            // console.log(response.data)
+            const data = response.data[0];
+            // console.log(data)
+            if (data.courses) {
+                console.log(data.courses.length);
+                localStorage.setItem('cartNumber',data.courses.length)
+                setMyCourses(data.courses);
+                console.log("MyCourseList")
+                console.log(myCourses);
+            }
+        }
+        getCartData();
+    }, [])
+
+
     return (
         <div className="flex h-screen">
             <div className="w-1/4 bg-white p-4">
@@ -35,30 +57,37 @@ function MyAccount() {
                     </div>
                 </div>
             </div>
-            <div className="flex-1 p-8 bg-gray-50">
+            <div className="flex-1 p-8 bg-gray-50 flex flex-col">
                 <h1 className="text-2xl font-bold mb-4">Manage Courses</h1>
-                <div className="bg-white p-4 rounded-lg shadow-md">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-2">
-                            <img
-                                src="https://flagcdn.com/w320/de.png"
-                                alt="German Flag"
-                                className="w-8 h-6"
-                            />
-                            <span>German</span>
+                {myCourses && myCourses.map((obj) => {
+                    return (
+                        <div className="bg-white p-4 rounded-lg shadow-md mt-3 ">
+                            <div className="flex justify-between items-center">
+                                <div className="flex items-center space-x-2">
+                                    <img
+                                        src="https://flagcdn.com/w320/de.png"
+                                        alt="German Flag"
+                                        className="w-8 h-6"
+                                    />
+                                    <span>{obj.title}</span>
+                                </div>
+                                <div className='flex flex-row items-center gap-2'>
+                                    <button className="text-red-500 hover:text-white hover:bg-red-500 p-2 rounded-md duration-100">Reset</button>
+                                    <button className="text-green-500 hover:text-white hover:bg-green-500 p-2 rounded-md duration-100">View</button>
+                                </div>
+                            </div>
                         </div>
-                        <button className="text-red-500 hover:text-red-700">RESET</button>
-                    </div>
-                </div>
+                    )
+                })}
             </div>
             <div className="w-1/4 p-8 bg-gray-100">
                 <div className="text-center mb-8 flex flex-col items-center gap-[5px]">
                     <img
-                        src="https://picsum.photos/id/67/400/400"
+                        src={`${user.picture || 'https://picsum.photos/id/67/400/400'}`}
                         alt="German Flag"
                         className="w-14 h-14 rounded-xl object-contain"
                     />
-                    <div className="text-xl font-bold">JohnDoe88447</div>
+                    <div className="text-xl font-bold">{user.name}</div>
                     <a href="#" className="text-blue-500 hover:underline">VIEW YOUR PROFILE</a>
                 </div>
                 <div className="space-y-4">
@@ -67,7 +96,7 @@ function MyAccount() {
                     <div className="cursor-pointer hover:bg-gray-200 p-2 rounded">Password</div>
                     <div className="cursor-pointer hover:bg-gray-200 p-2 rounded">Notifications</div>
                     <div className="cursor-pointer hover:bg-gray-200 p-2 rounded">Edit Daily Goal</div>
-                    <div className="cursor-pointer hover:bg-gray-200 p-2 rounded">Duolingo for Schools</div>
+                    <div className="cursor-pointer hover:bg-gray-200 p-2 rounded">EduHub for Schools</div>
                     <div className="cursor-pointer hover:bg-gray-200 p-2 rounded">Privacy</div>
                 </div>
             </div>

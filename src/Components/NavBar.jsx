@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import '../navbtn.css';
 import LogoutBtn from './LogoutBtn';
@@ -9,8 +9,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar(props) {
     const { loginWithRedirect , logout , isAuthenticated , user} = useAuth0();
-    let userpic =null;
-
+    const [cartNumber , setCartNumber] = useState(0)
+    // let userpic =null;
+    useEffect(() => {
+        const fetchCartNumber = () => {
+          const data = localStorage.getItem('cartNumber');
+          console.log(data);
+          setCartNumber(data);
+        };
+        const intervalId = setInterval(fetchCartNumber, 5000); // 5000 ms = 5 seconds
+        return () => clearInterval(intervalId);
+      }, []);
 
 
 
@@ -35,7 +44,7 @@ function NavBar(props) {
             <div className="nav-search">
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
-                <i className="ri-shopping-cart-2-line"></i>
+                <i className="ri-shopping-cart-2-line">{cartNumber}</i>
                 {isAuthenticated && <div className="userinfo"><img src={user && user.picture} alt={user.name} id='profilepic'/><Link to="/MyAccount"><p>{user.name}</p></Link></div>}
                 {isAuthenticated ? (<LogoutBtn onClick={()=>{logout({ logoutParams: { returnTo: window.location.origin } });}}/>) 
                 :(<button className="button" onClick={() => {loginWithRedirect();props.isLoggedIn()}}>
