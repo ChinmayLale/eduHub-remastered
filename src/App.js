@@ -9,6 +9,8 @@ import Room from './Components/Lobby/Room';
 import Courses from "./Components/Courses";
 import CoursePage from "./Components/CoursePage";
 import GetMaps from "./Components/GetMaps";
+import MyAccount from "./Components/MyAccount";
+import ManageAccount from "./Components/MyAccount/ManageAccount";
 
 function App() {
   const [isDomRendered, setIsDomRendered] = useState(false);
@@ -29,10 +31,11 @@ function App() {
         <Route path="/about" element={<About/>} />
         <Route path="/Courses" element={<Courses/>} />
         <Route path="/Courses/:CoursePage" element={<CoursePage />} />
-        <Route path="/Lobby" element={isAuth ? <Lobby/>:null}/>
+        <Route path="/Lobby" element={<Lobby/>}/>
         <Route path="/room/:room" element={<Room/>}/>
         <Route path="/maps" element={<GetMaps/>}/>
-
+        <Route path="/MyAccount" element={<MyAccount/>}/>
+        <Route path="/UpdateMyAccount" element={<ManageAccount/>}/>
       </Routes>
       {isDomRendered? <Cursor />:null}
     </>

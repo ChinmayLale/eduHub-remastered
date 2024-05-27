@@ -36,7 +36,7 @@ function NavBar(props) {
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
                 <i className="ri-shopping-cart-2-line"></i>
-                {isAuthenticated && <div className="userinfo"><img src={user && user.picture} alt={user.name} id='profilepic'/><p>{user.name}</p></div>}
+                {isAuthenticated && <div className="userinfo"><img src={user && user.picture} alt={user.name} id='profilepic'/><Link to="/MyAccount"><p>{user.name}</p></Link></div>}
                 {isAuthenticated ? (<LogoutBtn onClick={()=>{logout({ logoutParams: { returnTo: window.location.origin } });}}/>) 
                 :(<button className="button" onClick={() => {loginWithRedirect();props.isLoggedIn()}}>
                     Try Now
