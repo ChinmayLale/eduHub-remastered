@@ -64,14 +64,12 @@ function Hero() {
         <div className="features" >
           {courses && courses.slice(0, showCourse).map((course) => (
             // console.log("CourseName : "+course.course);
-            <div className="feature-card" key={course.id} onClick={()=>GotoCoursePage(`${course.course}`)}>  
+            <div className="feature-card h-fit pb-2" key={course.id} onClick={()=>GotoCoursePage(`${course.course}`)}>  
               <img src={book} alt="" />
               <h3 style={{ textTransform: 'capitalize' }}>{course.course}</h3>
-              <h4>Lorem ipsum , dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
+              <h4>{course.courseDesc}</h4>
               <h5>2+ Courses</h5>
             </div>
-
-
           )
           )}
           <div className="feature-card" onClick={()=>GotoCoursePage('MachineLearning')}>
@@ -79,18 +77,6 @@ function Hero() {
             <h3>Machine Learning</h3>
             <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
             <h5>2+ Courses</h5>
-          </div>
-          <div className="feature-card"  onClick={()=>GotoCoursePage('MachineLearning')}>
-            <img src={DataS} alt="" />
-            <h3>Data Science</h3>
-            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
-            <h5>6+ Courses</h5>
-          </div>
-          <div className="feature-card"  onClick={()=>GotoCoursePage('MachineLearning')}>
-            <img src={book} alt="" />
-            <h3>Version Control System</h3>
-            <h4>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, aliquid.</h4>
-            <h5>10+ Courses</h5>
           </div>
         </div>
         <button className='morecourse' onClick={moreCourse}>Discover More</button>

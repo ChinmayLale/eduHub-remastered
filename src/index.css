@@ -379,7 +379,7 @@ body {
   border-radius: 2%;
   gap: 2%;
   width: 20%;
-  height: 48vh;
+  height: 70vh;
   transition: all 0.5s;
 }
 
@@ -427,12 +427,13 @@ body {
   position: relative;
   padding: 2%;
   width: 55%;
-  height: 45%;
+  /* height: 45%; */
   border-radius: 50%;
   background-size: contain;
   background-position: top;
   background-color: #1ab79d14;
   margin-top: 5%;
+  object-fit: contain;
 }
 
 .hero2 .features .feature-card:nth-child(2) img {

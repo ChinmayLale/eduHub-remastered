@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import '../navbtn.css';
 import LogoutBtn from './LogoutBtn';
 import { useAuth0 } from "@auth0/auth0-react";
-
+import axios from 'axios'
 
 
 
@@ -12,14 +12,9 @@ function NavBar(props) {
     const [cartNumber , setCartNumber] = useState(0)
     // let userpic =null;
     useEffect(() => {
-        const fetchCartNumber = () => {
-          const data = localStorage.getItem('cartNumber');
-          console.log(data);
-          setCartNumber(data);
-        };
-        const intervalId = setInterval(fetchCartNumber, 5000); // 5000 ms = 5 seconds
-        return () => clearInterval(intervalId);
-      }, []);
+        const data = localStorage.getItem('cartNumber');
+        console.log("Items In cart are : ",data);
+      }, [localStorage.getItem('cartNumber')]);
 
 
 
@@ -44,7 +39,8 @@ function NavBar(props) {
             <div className="nav-search">
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
-                <i className="ri-shopping-cart-2-line">{cartNumber}</i>
+               {isAuthenticated && <p className='absolute text-sm top-5 bg-red-200 h-4 w-4 text-center flex flex-row items-center justify-center rounded-[50%]'>{cartNumber}</p>}
+                <i className="ri-shopping-cart-2-line"></i>
                 {isAuthenticated && <div className="userinfo"><img src={user && user.picture} alt={user.name} id='profilepic'/><Link to="/MyAccount"><p>{user.name}</p></Link></div>}
                 {isAuthenticated ? (<LogoutBtn onClick={()=>{logout({ logoutParams: { returnTo: window.location.origin } });}}/>) 
                 :(<button className="button" onClick={() => {loginWithRedirect();props.isLoggedIn()}}>

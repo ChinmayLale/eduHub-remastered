@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-
+import Alert from '@mui/material/Alert';
+// import CheckIcon from '@mui/icons-material/Check';
 
 function Courses() {
-  const { user, isAuthenticated  } = useAuth0()
+  const { user, isAuthenticated } = useAuth0()
   const navigate = useNavigate()
   const [filterSearch, setfilterSearch] = useState('');
   const [getCourses, setCourses] = useState(null);
   const [getCourseImages, setgetCourseImages] = useState([]);
-  const [loading, setloading] = useState(false)
+  const [loading, setloading] = useState(false);
+  const [getAlert, setAlert] = useState(false)
   const apiKey = '44080195-c1425845d29c0dda8a633855e';
   const imgArray = []
 
@@ -37,7 +39,7 @@ function Courses() {
     }
     getCourses();
 
-  },[])
+  }, [])
 
   function goToCourse(title, img, courseDesc, coursePrice, courseRating, subject, instructor) {
     if (isAuthenticated) {
@@ -57,15 +59,18 @@ function Courses() {
         const email = user.email;
         const newObj = {
           ...obj,
-          userEmail:email
+          userEmail: email
         }
         // console.log(newObj)
-        const response = await axios.post('http://localhost:8000/addToCart',newObj);
+        const response = await axios.post('http://localhost:8000/addToCart', newObj);
         const res = response.data;
-        console.log(res)
+        console.log(res);
+        setAlert(true);
+        setTimeout(()=>{setAlert(false)},2000)
       } catch (error) {
         console.log("Error Getting Details")
       }
+
     }
     else {
       alert('Login / Signup first');
@@ -76,6 +81,12 @@ function Courses() {
 
   return (
     <div className='courses-page'>
+      {getAlert &&
+        <Alert variant="filled" severity="success" className=' absolute top-[20vh] z-20' >
+          Course Added To Cart
+          {/* {setAlert(false)} */}
+        </Alert>
+      }
       <div className="first">
         <h1>Explore Our Wide Range Of Courses </h1>
         <div className="searchBox">
