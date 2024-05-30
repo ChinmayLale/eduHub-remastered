@@ -15,7 +15,7 @@ function Courses() {
   const [getAlert, setAlert] = useState(false)
   const apiKey = '44080195-c1425845d29c0dda8a633855e';
   const imgArray = []
-
+  const [cartNumber , setCartNumber] = useState(0)
 
   useEffect(() => {
     async function getCourses() {
@@ -62,6 +62,8 @@ function Courses() {
           userEmail: email
         }
         // console.log(newObj)
+        // setCartNumber((prev)=>{prev+1})
+        localStorage.setItem('cartNumber',cartNumber)
         const response = await axios.post('http://localhost:8000/addToCart', newObj);
         const res = response.data;
         console.log(res);
@@ -82,7 +84,7 @@ function Courses() {
   return (
     <div className='courses-page'>
       {getAlert &&
-        <Alert variant="filled" severity="success" className=' absolute top-[20vh] z-20' >
+        <Alert variant="filled" severity="success" className='sticky top-[15vh] z-20' >
           Course Added To Cart
           {/* {setAlert(false)} */}
         </Alert>
@@ -139,7 +141,7 @@ function Courses() {
                     </div>
                     <h1><span> Rs {obj.price}</span></h1>
                     <button className='addtocart' onClick={() => { goToCourse(obj.title, getCourseImages[index], obj.desc, obj.price, obj.rating, obj.subject, obj.instructor) }}>Enroll Now</button>
-                    <i class="ri-shopping-cart-2-line absolute right-28 bottom-1 text-2xl bg-red-100 text-red-900 cursor-pointer p-2 rounded-lg" onClick={() => { addtocart(obj) }}></i>
+                    <i class="ri-shopping-cart-2-line absolute right-28 bottom-1 text-2xl bg-red-100 text-red-900 cursor-pointer p-2 rounded-lg hover:scale-105 hover:text-green-100 hover:bg-green-900 duration-200" id='addToCart' onClick={() => { addtocart(obj);setCartNumber(cartNumber+1) }}></i>
                   </div>
                 </div>
               )

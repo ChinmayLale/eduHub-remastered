@@ -11,6 +11,8 @@ import CoursePage from "./Components/CoursePage";
 import GetMaps from "./Components/GetMaps";
 import MyAccount from "./Components/MyAccount";
 import ManageAccount from "./Components/MyAccount/ManageAccount";
+import MyCart from "./Components/MyCart";
+import WatchCourse from "./Components/WatchCourse";
 
 function App() {
   const [isDomRendered, setIsDomRendered] = useState(false);
@@ -35,7 +37,9 @@ function App() {
         <Route path="/room/:room" element={<Room/>}/>
         <Route path="/maps" element={<GetMaps/>}/>
         <Route path="/MyAccount" element={<MyAccount/>}/>
+        <Route path="/myCart" element={<MyCart/>}/>
         <Route path="/UpdateMyAccount" element={<ManageAccount/>}/>
+        <Route path="/Courses/watch/:WatchCourse" element={<WatchCourse/>}/>
       </Routes>
       {isDomRendered? <Cursor />:null}
     </>

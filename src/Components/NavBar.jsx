@@ -10,11 +10,33 @@ import axios from 'axios'
 function NavBar(props) {
     const { loginWithRedirect , logout , isAuthenticated , user} = useAuth0();
     const [cartNumber , setCartNumber] = useState(0)
-    // let userpic =null;
+    const [animate , setAnimate] =  useState(false);
+    let userpic =null;
     useEffect(() => {
-        const data = localStorage.getItem('cartNumber');
-        console.log("Items In cart are : ",data);
-      }, [localStorage.getItem('cartNumber')]);
+        const updateCartNumber = async () => {
+          try {
+            const data = await localStorage.getItem('cartNumber');
+            setCartNumber(data || 0); // Ensure a valid number (default to 0)
+          } catch (error) {
+            console.error('Error fetching cart number from localStorage:', error);
+          }
+        };
+        updateCartNumber();
+        const intervalId = setInterval(updateCartNumber, 5000); // 5 seconds in milliseconds
+        return () => clearInterval(intervalId);
+      }, []);
+
+
+
+
+      useEffect(() => {
+          setAnimate(true);
+          const timeout = setTimeout(() => {
+            setAnimate(false);
+          }, 1000); // Animation duration
+          console.log(animate)
+          return () => clearTimeout(timeout);
+      }, [cartNumber]);
 
 
 
@@ -23,24 +45,22 @@ function NavBar(props) {
     return (
         <div className="nav">
             <div className="nav-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30%" height="80%" viewBox="0 0 2048 2048">
-                    <path fill="currentColor" d="M1582 1065q41 72 61 150t21 161v103l-640 321l-640-321q0-60 1-112t9-101t24-98t48-103L256 960v587q29 10 52 28t41 42t26 52t9 59v320H0v-320q0-30 9-58t26-53t40-42t53-28V896L0 832l1024-512l1024 512zM256 1728q0-26-19-45t-45-19q-26 0-45 19t-19 45v192h128zm30-896l738 369l738-369l-738-369zm1250 568q0-77-15-143t-53-135l-444 222l-444-222q-33 58-50 122t-18 132v24l512 256z" />
-                </svg>
+            <i class={`ri-pencil-ruler-line text-4xl text-green-900 hover:animate-ping`}></i>
                 <h3><span>Edu</span>Hub</h3>
             </div>
             <div className="nav-menu">
                 <h4><Link to="/"  className='Link'>Home</Link></h4>
                 <h4><Link to="/about" className='Link'>About</Link></h4>
                 <h4><Link to="/Courses" className='Link'>Courses</Link></h4>
-                <h4><Link to="/Lobby" className='Link'>Doubts</Link></h4>
+                {isAuthenticated && <h4><Link to="/Lobby" className='Link'>Doubts</Link></h4>}
                 <h4><Link to="/home" className='Link'>Contact Us</Link></h4>
             </div>
 
             <div className="nav-search">
                 <i className="ri-search-2-line"></i>
                 <h4>Explore</h4>
-               {isAuthenticated && <p className='absolute text-sm top-5 bg-red-200 h-4 w-4 text-center flex flex-row items-center justify-center rounded-[50%]'>{cartNumber}</p>}
-                <i className="ri-shopping-cart-2-line"></i>
+               {isAuthenticated && <p className={`absolute text-sm top-5 bg-red-200 h-4 w-4 text-center flex flex-row items-center justify-center rounded-[50%] p-2 ${animate ? 'animate-ping' :'animate-none'}`}>{cartNumber}</p>}
+                {isAuthenticated && <Link to='/myCart'><i className="ri-shopping-cart-2-line"></i></Link>}
                 {isAuthenticated && <div className="userinfo"><img src={user && user.picture} alt={user.name} id='profilepic'/><Link to="/MyAccount"><p>{user.name}</p></Link></div>}
                 {isAuthenticated ? (<LogoutBtn onClick={()=>{logout({ logoutParams: { returnTo: window.location.origin } });}}/>) 
                 :(<button className="button" onClick={() => {loginWithRedirect();props.isLoggedIn()}}>

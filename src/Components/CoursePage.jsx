@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import { Accordion, AccordionHeader, AccordionBody } from '@material-tailwind/react'
+import { useNavigate } from 'react-router-dom';
 
 
 function CoursePage() {
     const [couese, setCourse] = useState();
-
+    const navigate = useNavigate();
     const [whatYouWillLearn, setWhatYouWillLearn] = useState([
         'Learn to program with one of the most powerful programming languages that exists today, C++.',
         'Learn Modern C++ rather than an obsolete version of C++ that most other courses teach',
@@ -34,6 +35,9 @@ function CoursePage() {
         );
     }
 
+    function watchCourse (title){
+        navigate(`/Courses/watch/${title}`)
+    }
 
     useEffect(() => {
         const rowdata = localStorage.getItem('courseData')
@@ -59,7 +63,7 @@ function CoursePage() {
                             <i key={index + Math.floor(couese.courseRating)} className="ri-star-line"></i>
                         ))}{couese.courseRating}/5</h3></div>
                     <h4 style={{ backgroundColor: 'rgba(255, 255, 158,0.7)', color: 'black', padding: '0 20px 0 10px', width: 'max-content', borderRadius: '5px' }}>Instructor : {couese.instructor}</h4>
-                    <button className='button-89'>Enroll Now</button>
+                    <button className='button-89' onClick={()=>{watchCourse(couese.title)}}>Enroll Now</button>
                 </div>
                 <div className="left">
                     <img src={couese.img} alt="" />
